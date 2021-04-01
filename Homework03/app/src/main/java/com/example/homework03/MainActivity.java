@@ -2,6 +2,7 @@ package com.example.homework03;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "你选择了" + gender + "！", Toast.LENGTH_SHORT).show();
             }
         });
-        dialog.show(getSupportFragmentManager(), "cheoic");
+        dialog.show(getSupportFragmentManager(), "choice");
     }
 
     //单选对话框
@@ -61,8 +62,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //多选对话框
-    public void onMultipleChoiceButtonClicked(View view){
+    public void onMultipleChoiceButtonClicked(View view) {
         MultipleChoiceDialogFragment dialog = new MultipleChoiceDialogFragment();
-        dialog.show(getSupportFragmentManager(),"multiple");
+        dialog.show(getSupportFragmentManager(), "multiple");
     }
+
+    //自定义对话框
+    public void onCustomButtonClicked(View view) {
+        CustomDialogFragment dialog = new CustomDialogFragment();
+
+        dialog.setListener(new CustomDialogFragment.NotifyDialogListener() {
+            @Override
+            public void onDialogPositiveClicked(String editText1, String editText2) {
+                if ((!TextUtils.isEmpty(editText1)) && (!TextUtils.isEmpty(editText2))) {
+                    Toast.makeText(getApplicationContext(), "你填写了" + editText1 + "和" + editText2 + "！", Toast.LENGTH_SHORT).show();
+                } else if (!TextUtils.isEmpty(editText1)) {
+                    Toast.makeText(getApplicationContext(), "你填写了" + editText1 + "！", Toast.LENGTH_SHORT).show();
+                } else if (!TextUtils.isEmpty(editText2)) {
+                    Toast.makeText(getApplicationContext(), "你填写了" + editText2 + "！", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "你未填写任何内容！", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        dialog.show(getSupportFragmentManager(), "custom");
+    }
+
 }
