@@ -48,15 +48,21 @@ public class MainActivity extends AppCompatActivity {
         dialog.setListener(new ChoiceDialogFragment.NotifyDialogListener() {
             @Override
             public void onDialogPositiveClicked(String gender) {
-                Toast.makeText(getApplicationContext(), "你选择了" + gender, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "你选择了" + gender + "！", Toast.LENGTH_SHORT).show();
             }
         });
-        dialog.show(getSupportFragmentManager(), "choice");
+        dialog.show(getSupportFragmentManager(), "cheoic");
     }
 
     //单选对话框
     public void onSingleChoiceButtonClicked(View view) {
         SingleChoiceDialogFragment dialog = new SingleChoiceDialogFragment();
-        dialog.show(getSupportFragmentManager(), "singleChoice");
+        dialog.show(getSupportFragmentManager(), "single");
+    }
+
+    //多选对话框
+    public void onMultipleChoiceButtonClicked(View view){
+        MultipleChoiceDialogFragment dialog = new MultipleChoiceDialogFragment();
+        dialog.show(getSupportFragmentManager(),"multiple");
     }
 }
