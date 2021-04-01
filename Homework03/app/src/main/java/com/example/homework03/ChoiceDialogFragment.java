@@ -11,7 +11,6 @@ public class ChoiceDialogFragment extends DialogFragment {
     private String[] genders = new String[]{"男", "女"};
     private ChoiceDialogFragment.NotifyDialogListener listener;
 
-
     public interface NotifyDialogListener {
         public void onDialogPositiveClicked(String gender);
     }

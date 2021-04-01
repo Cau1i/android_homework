@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    //旧版对话框
     public void onOldButtonClicked(View view) {
         AlertDialog dialog;
         dialog = new AlertDialog.Builder(this).setTitle("旧版对话框")
@@ -35,19 +36,27 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void onSimpleButtonClicked(View view){
+    //简单对话框
+    public void onSimpleButtonClicked(View view) {
         SimpleDialogFragment dialog = new SimpleDialogFragment();
-        dialog.show(getFragmentManager(),"simple");
+        dialog.show(getFragmentManager(), "simple");
     }
 
-    public void onChoiceButtonClicked(View view){
+    //选择对话框
+    public void onChoiceButtonClicked(View view) {
         ChoiceDialogFragment dialog = new ChoiceDialogFragment();
         dialog.setListener(new ChoiceDialogFragment.NotifyDialogListener() {
             @Override
             public void onDialogPositiveClicked(String gender) {
-                Toast.makeText(getApplicationContext(),"你选择了"+gender,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "你选择了" + gender, Toast.LENGTH_SHORT).show();
             }
         });
-        dialog.show(getSupportFragmentManager(),"choice");
+        dialog.show(getSupportFragmentManager(), "choice");
+    }
+
+    //单选对话框
+    public void onSingleChoiceButtonClicked(View view) {
+        SingleChoiceDialogFragment dialog = new SingleChoiceDialogFragment();
+        dialog.show(getSupportFragmentManager(), "singleChoice");
     }
 }
