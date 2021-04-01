@@ -39,4 +39,15 @@ public class MainActivity extends AppCompatActivity {
         SimpleDialogFragment dialog = new SimpleDialogFragment();
         dialog.show(getFragmentManager(),"simple");
     }
+
+    public void onChoiceButtonClicked(View view){
+        ChoiceDialogFragment dialog = new ChoiceDialogFragment();
+        dialog.setListener(new ChoiceDialogFragment.NotifyDialogListener() {
+            @Override
+            public void onDialogPositiveClicked(String gender) {
+                Toast.makeText(getApplicationContext(),"你选择了"+gender,Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.show(getSupportFragmentManager(),"choice");
+    }
 }
