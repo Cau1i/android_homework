@@ -38,7 +38,6 @@ public class Fragment2 extends Fragment {
                 intent1.setAction("android.intent.action.VIEW");
                 intent1.setData(Uri.parse("https://www.baidu.com"));
                 startActivity(intent1);
-
             }
         });
 
