@@ -1,9 +1,7 @@
 package com.example.homework07;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.homework07.R;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
-import java.security.PrivateKey;
 
 public class Fragment3 extends Fragment {
     public Fragment3() {
@@ -31,23 +30,45 @@ public class Fragment3 extends Fragment {
 
         //读取
         SharedPreferences settings = getActivity().getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String id = settings.getString("ID", "");
-        String password = settings.getString("PASSWORD", "");
-        numEditText.setText(id);
-        passEditText.setText(password);
+        if ((settings.getString("ID", "") != null) && (settings.getString("PASSWORD", "") != null)) {
+            String id = settings.getString("ID", "");
+            String password = settings.getString("PASSWORD", "");
+            numEditText.setText(id);
+            passEditText.setText(password);
+        }
 
         //登录按钮
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //写入
-                SharedPreferences settings1 = getActivity().getSharedPreferences("settings", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = settings1.edit();
+                SharedPreferences.Editor editor = settings.edit();
                 editor.putString("ID", numEditText.getText().toString());
-                editor.putString("PASSWORD", passEditText.getText().toString());
+                String sha = null;
+                try {
+                    sha = computeHash(passEditText.getText().toString());
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                editor.putString("PASSWORD", sha);
                 editor.commit();
                 Toast.makeText(getActivity(), "登录成功", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public String computeHash(String input) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        digest.reset();
+
+        byte[] byteData = digest.digest(input.getBytes("UTF-8"));
+        StringBuffer sb = new StringBuffer();
+
+        for (int i = 0; i < byteData.length; i++) {
+            sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
     }
 }

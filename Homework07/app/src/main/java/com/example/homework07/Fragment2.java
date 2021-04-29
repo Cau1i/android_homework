@@ -9,8 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.homework07.R;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
