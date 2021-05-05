@@ -31,7 +31,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    FileOutputStream os = getActivity().openFileOutput("写入内部文件", Context.MODE_PRIVATE);
+                    FileOutputStream os = getActivity().openFileOutput("INT", Context.MODE_PRIVATE);
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
                     writer.write("Tom");
                     writer.close();
@@ -48,7 +48,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    FileInputStream is = getActivity().openFileInput("读取内部文件");
+                    FileInputStream is = getActivity().openFileInput("INT");
                     BufferedReader reader = new BufferedReader(new InputStreamReader(is));
                     String line = reader.readLine();
                     Toast.makeText(getActivity(), line, Toast.LENGTH_SHORT).show();

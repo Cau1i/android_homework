@@ -28,14 +28,13 @@ public class Fragment3 extends Fragment {
         EditText numEditText = getView().findViewById(R.id.numEditText);
         EditText passEditText = getView().findViewById(R.id.passEditText);
 
-        //读取
         SharedPreferences settings = getActivity().getSharedPreferences("settings", Context.MODE_PRIVATE);
-        if ((settings.getString("ID", "") != null) && (settings.getString("PASSWORD", "") != null)) {
-            String id = settings.getString("ID", "");
-            String password = settings.getString("PASSWORD", "");
-            numEditText.setText(id);
-            passEditText.setText(password);
-        }
+        //读取
+        String id = settings.getString("ID", "");
+        String password = settings.getString("PASSWORD", "");
+        numEditText.setText(id);
+        passEditText.setText(password);
+
 
         //登录按钮
         loginButton.setOnClickListener(new View.OnClickListener() {

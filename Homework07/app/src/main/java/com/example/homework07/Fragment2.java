@@ -31,7 +31,7 @@ public class Fragment2 extends Fragment {
             @Override
             public void onClick(View v) {
                 File externalPath = getActivity().getExternalFilesDir(null);
-                File file = new File(externalPath, "写入外部存储");
+                File file = new File(externalPath, "OUT");
                 try {
                     FileOutputStream os = new FileOutputStream(file);
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
@@ -50,7 +50,7 @@ public class Fragment2 extends Fragment {
             @Override
             public void onClick(View v) {
                 File externalPath = getActivity().getExternalFilesDir(null);
-                File file = new File(externalPath, "读取外部存储");
+                File file = new File(externalPath, "OUT");
                 try {
                     FileInputStream is = new FileInputStream(file);
                     BufferedReader reader = new BufferedReader(new InputStreamReader(is));
