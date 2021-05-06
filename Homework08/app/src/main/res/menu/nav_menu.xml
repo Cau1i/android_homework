@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="首页" />
+    <item android:title="7.数据存储">
+        <menu>
+            <item
+                android:id="@+id/fragment1"
+                android:title="内部存储" />
+            <item
+                android:id="@+id/fragment2"
+                android:title="外部存储" />
+            <item
+                android:id="@+id/fragment3"
+                android:title="SharedPreferences" />
+        </menu>
+    </item>
+    <item android:title="8.SQLite数据库" >
+        <menu >
+            <item
+                android:id="@+id/fragment4"
+                android:title="基本操作" />
+            <item
+                android:id="@+id/fragment5"
+                android:title="Room库" />
+        </menu>
+    </item>
+</menu>
