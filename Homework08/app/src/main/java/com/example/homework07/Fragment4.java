@@ -51,7 +51,6 @@ public class Fragment4 extends Fragment {
         }
         contentTextView.setText(stringBuilder.toString());
 
-
         //添加按钮
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,8 +83,8 @@ public class Fragment4 extends Fragment {
                     String username = cursor.getString(cursor.getColumnIndex("username"));
                     int age = cursor.getInt(cursor.getColumnIndex("age"));
                     stringBuilder.append("id：").append(id)
-                            .append("   username:").append(username)
-                            .append("   age:").append(age).append("\n");
+                            .append("   username：").append(username)
+                            .append("   age：").append(age).append("\n");
                 }
                 contentTextView.setText(stringBuilder.toString());
             }

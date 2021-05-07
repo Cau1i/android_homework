@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-
 //数据库的创建
 public class DbHelper extends SQLiteOpenHelper {
     private Context context;
