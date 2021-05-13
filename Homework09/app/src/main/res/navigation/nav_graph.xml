@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homefragment">
+
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="com.example.homework07.Fragment1"
+        android:label="内部存储" />
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.example.homework07.Fragment2"
+        android:label="外部存储" />
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="com.example.homework07.Fragment3"
+        android:label="Save QQ" />
+    <fragment
+        android:id="@+id/homefragment"
+        android:name="com.example.homework07.homeFragment"
+        android:label="首页" />
+    <fragment
+        android:id="@+id/fragment4"
+        android:name="com.example.homework07.Fragment4"
+        android:label="基本操作" />
+    <fragment
+        android:id="@+id/fragment5"
+        android:name="com.example.homework07.Fragment5"
+        android:label="Room库" />
+    <fragment
+        android:id="@+id/music_service_fragment"
+        android:name="com.example.homework07.service.ServicePlayMusicFragment"
+        android:label="Service-播放音乐" />
+    <fragment
+        android:id="@+id/music_service_fragment2"
+        android:name="com.example.homework07.service.ServicePlayMusicFragment2"
+        android:label="Service-播放音乐2" />
+</navigation>
