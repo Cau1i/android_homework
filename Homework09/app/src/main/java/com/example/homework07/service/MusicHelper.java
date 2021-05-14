@@ -11,10 +11,9 @@ import com.example.homework07.R;
 public class MusicHelper {
     private MediaPlayer mediaPlayer;
     private Context context;
-    private final int[] musics = new int[]{R.raw.only, R.raw.options};
+    private final int[] musics = new int[]{R.raw.options, R.raw.only};
     private int musicIndex = 0;
     private boolean prepared = false;
-    AssetManager am;
 
     public MusicHelper(Context context) {
         this.context = context;
@@ -29,22 +28,6 @@ public class MusicHelper {
 
     //播放音频
     public void play() {
-        try {
-            mediaPlayer.setDataSource(context,
-                    Uri.parse("android.resource://com.example.homework07/" + musics[musicIndex]));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        mediaPlayer.prepareAsync();//TODO prepare过程中不允许操作按钮
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
-                prepared = true;
-            }
-        });
-
         if (mediaPlayer.isPlaying()) {
             return;
         }
@@ -53,6 +36,21 @@ public class MusicHelper {
             mediaPlayer.start();
             return;
         }
+
+        try {
+            mediaPlayer.setDataSource(context,
+                    Uri.parse("android.resource://com.example.homework07/" + musics[musicIndex]));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        mediaPlayer.prepareAsync();//TODO prepare过程中不允许操作按钮
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+                prepared = true;
+            }
+        });
     }
 
     //暂停

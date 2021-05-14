@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -15,8 +16,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.homework07.R;
 
+import java.util.Random;
+
 public class ServicePlayMusicFragment2 extends Fragment {
-    MyConn myConn;
+    private MyConn myConn;
 
     public ServicePlayMusicFragment2() {
         super(R.layout.music_service_fagment2);
@@ -28,6 +31,7 @@ public class ServicePlayMusicFragment2 extends Fragment {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             myBinder = (MusicService2.MyBinder) service;
+            Log.d("MusicService2------", "绑定成功");
         }
 
         @Override
@@ -42,27 +46,40 @@ public class ServicePlayMusicFragment2 extends Fragment {
         Intent intent = new Intent(getActivity(), MusicService2.class);
         getActivity().startService(intent);
 
+        //bindService
         if (myConn == null) {
             myConn = new MyConn();
             intent = new Intent(getActivity(), MusicService2.class);
             getActivity().bindService(intent, myConn, 0);
         }
-        //播放
+
+
+        //播放按钮
         Button btn_play = getView().findViewById(R.id.btn_play);
         btn_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "0", Toast.LENGTH_SHORT).show();
                 if (myConn.myBinder == null) {
                     return;
                 }
-                Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
                 myConn.myBinder.play();
-                Toast.makeText(getActivity(), "2", Toast.LENGTH_SHORT).show();
+                Log.d("MusicService2------", "play");
             }
         });
 
-        //暂停
+        //下一首按钮
+        Button btn_next = getView().findViewById(R.id.btn_next);
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (myConn.myBinder == null) {
+                    return;
+                }
+                myConn.myBinder.next();
+            }
+        });
+
+        //暂停按钮
         Button btn_pause = getView().findViewById(R.id.btn_pause);
         btn_pause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +91,6 @@ public class ServicePlayMusicFragment2 extends Fragment {
             }
         });
     }
-
-
 }
 
 

@@ -14,7 +14,6 @@ public class MusicService extends Service {
         super.onCreate();
         musicHelper = new MusicHelper(this);
     }
-
     @Override
     public void onDestroy() {
         Log.d("MusicService------", "onDestroy");
@@ -22,14 +21,12 @@ public class MusicService extends Service {
         musicHelper.destroy();
         musicHelper = null;
     }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         musicHelper.play();
         Log.d("MusicService------", "onStartCommand");
         return super.onStartCommand(intent, flags, startId);
     }
-
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.

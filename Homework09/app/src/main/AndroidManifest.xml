@@ -13,8 +13,11 @@
         <service
             android:name=".service.MusicService"
             android:enabled="true"
-            android:exported="true">
-        </service>
+            android:exported="true"></service>
+        <service
+            android:name=".service.MusicService2"
+            android:enabled="true"
+            android:exported="true"></service>
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -24,5 +27,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
